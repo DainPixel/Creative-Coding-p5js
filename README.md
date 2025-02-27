@@ -1,6 +1,11 @@
 # 🎨 Creative Coding
 **Exploring interactive visuals and generative art through `p5.js`.** <br>
-This repository showcases two projects developed for the Content Prototyping course, demonstrating real-time audio visualization and algorithmic composition.
+This repository showcases two projects: a **real-time audio visualizer** and an **algorithmic art generator**.
+
+> 📅 **Project Duration**  
+> _April - June 2020_  
+> Developed independently as part of the **Content Prototyping** course.
+
 
 ## 🟡 1. Pacman Audio Visualizer 🎵  
 **An interactive Pac-Man animation that reacts to audio input.**  
