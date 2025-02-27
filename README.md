@@ -1,5 +1,6 @@
-# 🎨 Creative Coding with _p5.js_
-Two interactive projects developed using **p5.js** for the Content Prototyping course.
+# 🎨 Creative Coding
+**Exploring interactive visuals and generative art through `p5.js`.** <br>
+This repository showcases two projects developed for the Content Prototyping course, demonstrating real-time audio visualization and algorithmic composition.
 
 ## 🟡 1. Pacman Audio Visualizer 🎵  
 **An interactive Pac-Man animation that reacts to audio input.**  
