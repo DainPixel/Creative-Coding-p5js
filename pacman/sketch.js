@@ -1,0 +1,105 @@
+let pacman = [];
+let number = 128;
+let snd, amp;
+
+function preload() {
+  soundFormats('mp3');
+  snd = loadSound("Everybody.mp3");
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  colorMode(HSB, 360, 100, 100, 100);
+
+  snd.setVolume(1.0);
+  snd.play();
+  amp = new p5.Amplitude();
+
+  for (let i = 0; i < number; i++) {
+    let x = random(width),
+      y = random(height),
+      size = random(50, 500);
+    let h = random(360),
+      d = random(-5, 5);
+    pacman[i] =
+      new PacMan(x, y, d, size, color(h, 100, 100, 50));
+  }
+}
+
+function draw() {
+  background(0, 0, 0, 20);
+
+  for (let i = 0; i < number; i++) {
+    pacman[i].display();
+    pacman[i].move();
+  }
+
+  // set variable 
+  let s = map(amp.getLevel(), 0, 1, 0.7, 2);
+  let sp = map(amp.getLevel(), 0, 1, 1, 30);
+
+  // size & speed change function
+  for (let i = 0; i < number; i++) {
+    pacman[i].setSize(s);
+    pacman[i].setSpeed(sp);
+  }
+
+  // revert & color change function
+  if (amp.getLevel() > 0.4) {
+    for (let i = 0; i < number; i++) {
+      pacman[i].revert();
+      pacman[i].change();
+    }
+  }
+}
+
+function PacMan(x, y, d, size, c) {
+  // properties
+  this.x = x;
+  this.y = y;
+  this.d = d;
+  this.sp = d;
+  this.size = size;
+  this.s = size;
+  this.c = c;
+
+  // methods
+  // display
+  this.display = function() {
+    fill(this.c);
+    noStroke();
+
+    arc(this.x, this.y, this.s, this.s, radians(30), radians(330), PIE);
+
+    fill(0);
+    circle(this.x, this.y - this.s / 4, this.s / 15);
+  }
+
+  // size change
+  this.setSize = function(s) {
+    this.s = this.size * s;
+  }
+
+  // color change
+  this.change = function() {
+    this.c = color(random(360), 100, 100, 50);
+  }
+
+  // move
+  this.move = function() {
+    this.x = this.x + this.sp;
+
+    if (this.x - this.size / 2 > width) this.x = -this.size / 2;
+    else if (this.x + this.size / 2 < 0) this.x = width + this.size / 2;
+  }
+
+  // speed change
+  this.setSpeed = function(sp) {
+    this.sp = this.d * sp;
+  }
+
+  // revert
+  this.revert = function() {
+    this.d = this.d * -1;
+  }
+}
